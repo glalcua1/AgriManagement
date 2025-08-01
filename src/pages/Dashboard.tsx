@@ -6,7 +6,7 @@ import {
   CardContent,
   Typography,
   useTheme,
-  useMediaQuery,
+
   IconButton,
   Chip,
   LinearProgress,
@@ -15,14 +15,14 @@ import {
   Agriculture as FarmIcon,
   Assignment as LeaseIcon,
   TrendingUp as RevenueIcon,
-  TrendingDown as ExpenseIcon,
+
   AccountBalance as ProfitIcon,
   Warning as WarningIcon,
   Refresh as RefreshIcon,
   WbSunny as WeatherIcon,
 } from '@mui/icons-material';
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '@/store';
+import { useSelector } from 'react-redux';
+import { RootState, useAppDispatch } from '@/store';
 import { fetchDashboardMetrics, fetchFinancialSummary } from '@/store/slices/dashboardSlice';
 import { fetchFarms } from '@/store/slices/farmSlice';
 import {
@@ -36,8 +36,7 @@ import {
   PieChart,
   Pie,
   Cell,
-  BarChart,
-  Bar,
+
 } from 'recharts';
 
 interface MetricCardProps {
@@ -62,7 +61,7 @@ const MetricCard: React.FC<MetricCardProps> = ({
   trend,
   loading = false,
 }) => {
-  const theme = useTheme();
+  // const theme = useTheme(); // Currently not used in this component
 
   return (
     <Card 
@@ -128,11 +127,11 @@ const MetricCard: React.FC<MetricCardProps> = ({
 
 const Dashboard: React.FC = () => {
   const theme = useTheme();
-  const dispatch = useDispatch();
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const dispatch = useAppDispatch();
+  // const isMobile = useMediaQuery(theme.breakpoints.down('md')); // Currently unused
   
   const { metrics, financialSummary, loading } = useSelector((state: RootState) => state.dashboard);
-  const { farms } = useSelector((state: RootState) => state.farms);
+  // const { farms } = useSelector((state: RootState) => state.farms); // Currently unused
 
   useEffect(() => {
     dispatch(fetchDashboardMetrics());
@@ -180,13 +179,7 @@ const Dashboard: React.FC = () => {
               endDate: new Date(),
             }));
           }}
-          sx={{ 
-            backgroundColor: theme.palette.primary.main,
-            color: 'white',
-            '&:hover': {
-              backgroundColor: theme.palette.primary.dark,
-            },
-          }}
+          color="primary"
         >
           <RefreshIcon />
         </IconButton>

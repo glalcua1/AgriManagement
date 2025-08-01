@@ -12,7 +12,7 @@ import {
   CardContent,
   Button,
   Avatar,
-  Divider,
+
   List,
   ListItem,
   ListItemText,
@@ -29,7 +29,7 @@ import {
   TableHead,
   TableRow,
   Paper,
-  Tooltip,
+
 } from '@mui/material';
 import {
   Close as CloseIcon,
@@ -47,7 +47,7 @@ import {
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '@/store';
 import { closeDialog } from '@/store/slices/uiSlice';
-import { CropType, Plot } from '@/types';
+import { CropType } from '@/types';
 
 interface TabPanelProps {
   children?: React.ReactNode;

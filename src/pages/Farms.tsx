@@ -16,10 +16,10 @@ import {
   Dialog,
   DialogTitle,
   DialogContent,
-  DialogActions,
+
   Avatar,
   LinearProgress,
-  Tooltip,
+
   Menu,
   MenuItem,
   ListItemIcon,
@@ -40,14 +40,12 @@ import {
   GridView as GridViewIcon,
   ViewList as ListViewIcon,
 } from '@mui/icons-material';
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '@/store';
+import { useSelector } from 'react-redux';
+import { RootState, useAppDispatch } from '@/store';
 import { 
   fetchFarms, 
-  addFarm, 
   deleteFarm, 
   setSearchQuery, 
-  setFilters,
   setSelectedFarm,
 } from '@/store/slices/farmSlice';
 import { openDialog, closeDialog, showAlert } from '@/store/slices/uiSlice';
@@ -57,7 +55,7 @@ import FarmDetailsDialog from '@/components/Farm/FarmDetailsDialog';
 
 const Farms: React.FC = () => {
   const theme = useTheme();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   
   const { farms, loading, searchQuery } = useSelector((state: RootState) => state.farms);

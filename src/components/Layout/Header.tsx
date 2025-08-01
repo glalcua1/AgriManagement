@@ -33,7 +33,7 @@ const Header: React.FC = () => {
   const dispatch = useDispatch();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   
-  const sidebarOpen = useSelector((state: RootState) => state.ui.sidebarOpen);
+  // const sidebarOpen = useSelector((state: RootState) => state.ui.sidebarOpen); // Currently unused
   const currentTheme = useSelector((state: RootState) => state.ui.theme);
   const notifications = useSelector((state: RootState) => state.ui.notifications);
   

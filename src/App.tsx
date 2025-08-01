@@ -1,4 +1,4 @@
-import React from 'react';
+// React import not needed with new JSX transform
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { ThemeProvider } from '@mui/material/styles';

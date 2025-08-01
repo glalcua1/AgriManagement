@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import {
   Box,
   Typography,
@@ -9,47 +9,37 @@ import {
   TextField,
   InputAdornment,
   Chip,
-  IconButton,
+
   useTheme,
   useMediaQuery,
   Fab,
   Avatar,
   LinearProgress,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
+
   FormControl,
   InputLabel,
   Select,
   MenuItem,
-  Tooltip,
-  Stack,
-  Divider,
+
 } from '@mui/material';
 import {
   Add as AddIcon,
   Search as SearchIcon,
-  FilterList as FilterIcon,
+
   Assignment as LeaseIcon,
-  People as PeopleIcon,
-  AttachMoney as MoneyIcon,
-  Schedule as ScheduleIcon,
+
   CheckCircle as PaidIcon,
   Warning as OverdueIcon,
   Pending as PendingIcon,
-  CalendarToday as CalendarIcon,
+
   LocationOn as LocationIcon,
   Agriculture as CropIcon,
   Visibility as ViewIcon,
   Edit as EditIcon,
   Payment as PaymentIcon,
 } from '@mui/icons-material';
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '@/store';
+import { useSelector } from 'react-redux';
+import { RootState, useAppDispatch } from '@/store';
 import { 
   fetchLeases, 
   fetchLessees,
@@ -59,19 +49,19 @@ import {
   updatePaymentStatus,
 } from '@/store/slices/leaseSlice';
 import { fetchFarms } from '@/store/slices/farmSlice';
-import { openDialog, closeDialog, showAlert } from '@/store/slices/uiSlice';
+import { openDialog, showAlert } from '@/store/slices/uiSlice';
 import { Lease, CropType, PaymentSchedule } from '@/types';
 
 const Leases: React.FC = () => {
   const theme = useTheme();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   
   const { leases, lessees, loading, searchQuery, filters } = useSelector((state: RootState) => state.leases);
   const { farms } = useSelector((state: RootState) => state.farms);
-  const { dialogs } = useSelector((state: RootState) => state.ui);
+  // const { dialogs } = useSelector((state: RootState) => state.ui);
   
-  const [viewMode, setViewMode] = useState<'cards' | 'table'>('cards');
+  // const [viewMode, setViewMode] = useState<'cards' | 'table'>('cards');
 
   useEffect(() => {
     dispatch(fetchLeases());
